@@ -5,5 +5,18 @@ pipeline {
 		}
 	}
     stages {
+        stage('Print Date to File')
+	{
+            steps 
+	    {
+                script
+		{
+                    def currentDate = new Date()
+                    def formattedDate = currentDate.format('yyyy-MM-dd')
+                    
+                    writeFile file: 'output.txt', text: formattedDate
+		}
+	     }
+	}
     }
 }
