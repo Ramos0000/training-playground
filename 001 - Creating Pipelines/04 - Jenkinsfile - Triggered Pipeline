@@ -13,7 +13,7 @@ pipeline {
                 sh 'cat /etc/alpine-release'
             }
         }
-	stage('build') {
+	stage('time') {
             steps {
 	    	echo "$now"
 		echo "Current date: $now"
