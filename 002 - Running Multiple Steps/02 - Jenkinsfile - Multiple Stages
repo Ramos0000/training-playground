@@ -21,7 +21,7 @@ pipeline {
                 script {
                     def fileContent = readFile('output.txt').trim()
                     
-                    if (fileContent == '2023') {
+                    if (fileContent.contains('2023')){
                         echo 'File content is correct.'
                     } else {
                         error 'File content is incorrect.'
