@@ -5,5 +5,29 @@ pipeline {
 		}
 	}
     stages {
+        stage('Build') {
+            steps {
+                script {
+                    def currentDate = new Date()
+                    def formattedDate = currentDate.format('yyyy-MM-dd')
+                    
+                    writeFile file: 'output.txt', text: formattedDate
+                }
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                script {
+                    def fileContent = readFile('output.txt').trim()
+                    
+                    if (fileContent == '2023') {
+                        echo 'File content is correct.'
+                    } else {
+                        error 'File content is incorrect.'
+                    }
+                }
+            }
+        }
     }
 }
