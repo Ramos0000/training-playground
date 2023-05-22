@@ -4,11 +4,22 @@ pipeline {
 			image 'alpine:latest' 
 		}
 	}
-    stages {
-        stage('build') {
+ stages {
+        stage('User Input') {
             steps {
-                echo "$NAME"
-                echo "$AGE"
+                script {
+                    def userInput = input(
+                        id: 'userInput',
+                        message: 'Please provide your name and age',
+                        parameters: [
+                            string(defaultValue: '', description: 'Name', name: 'Name'),
+                            string(defaultValue: '', description: 'Age', name: 'Age')
+                        ]
+                    )
+
+                    echo "Name: ${userInput.Name}"
+                    echo "Age: ${userInput.Age}"
+                }
             }
         }
     }
