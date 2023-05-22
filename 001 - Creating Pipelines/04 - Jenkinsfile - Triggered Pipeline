@@ -15,8 +15,7 @@ pipeline {
         }
 	stage('time') {
             steps {
-	    	echo "$now"
-		echo "Current date: $now"
+	    	echo "System Date"
             }
         }
     }
