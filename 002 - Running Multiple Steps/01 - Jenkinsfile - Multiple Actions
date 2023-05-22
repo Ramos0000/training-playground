@@ -16,7 +16,7 @@ pipeline {
                     for  (int i; i<=2; i++)
 		    {
                     writeFile file: 'output.txt', text: formattedDate
-		    sh sleep 10s
+		    sh 'sleep 10s'
 		    }
 		}
 		
