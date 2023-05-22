@@ -13,7 +13,7 @@ pipeline {
 		{
                     def currentDate = new Date()
                     def formattedDate = currentDate.format('yyyy-MM-dd')
-                    for  (int i; i<=2; i++)
+                    for  (int i = 1; i<=2; i++)
 		    {
                     writeFile file: 'output.txt', text: formattedDate
 		    sh 'sleep 10s'
