@@ -1,31 +1,27 @@
 pipeline {
-  parameters {
-    choice(name: 'STAGE', choices: ['Build', 'Test'], description: 'Which stage?')
-  }
   agent {
     docker {
       image 'alpine:latest'
     }
   }
+  parameters {
+    choice(name: 'CHOICE', choices: ['build', 'test'], description: 'Pick a stage')
+  }
   stages {
-    stage('Build') {
+    stage('build') {
       when {
-        expression {
-          params.STAGE == 'Build'
-        }
+        equals expected: "build", actual: "${params.CHOICE}"
       }
       steps {
-        echo "Building..."
+        echo "Build stage running"
       }
     }
-    stage('Test') {
+    stage('test') {
       when {
-        expression {
-          params.STAGE == 'Test'
-        }
+        equals expected: "test", actual: "${params.CHOICE}"
       }
       steps {
-        echo "Testing..."
+        echo "Test stage running"
       }
     }
   }
