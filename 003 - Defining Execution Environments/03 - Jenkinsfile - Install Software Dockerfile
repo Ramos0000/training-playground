@@ -1,10 +1,14 @@
 pipeline {
-    agent { 
-	}
+  agent {
+        docker {
+            image 'alpine:latest'
+        }
+    }
     stages {
         stage('build') {
             steps {
             	echo "Don't install curl here!"
+		sh 'apk add --no-cache curl'
                 sh "curl www.google.com"
             }
         }
