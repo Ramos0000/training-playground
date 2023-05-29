@@ -16,11 +16,11 @@ pipeline {
                         ]
                     )
                     
-                    def selectedStage = userInput['stageSelection']
+                    def selectedStage = userInput['Test']
                     
-                    if (selectedStage == 'build') {
+                    if (selectedStage == 'Build') {
                         buildStage()
-                    } else if (selectedStage == 'test') {
+                    } else if (selectedStage == 'Test') {
                         testStage()
                     } else {
                         error "Invalid stage selection: ${selectedStage}"
