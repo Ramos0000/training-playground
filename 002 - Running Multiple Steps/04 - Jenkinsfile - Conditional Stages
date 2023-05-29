@@ -8,15 +8,11 @@ pipeline {
         stage('User Input') {
             steps {
                 script {
-                    def userInput = input(
-                        id: 'userInput',
-                        message: 'Select an action:',
-                        parameters: [
-                            choice(choices: ['Build', 'Test'], description: 'Action', name: 'ACTION')
-                        ]
-                    )
+                    def userInput = input message: 'Select a stage to execute (build/test):', parameters: [
+                        choice(choices: ['build', 'test'], description: 'Select a stage', name: 'stageSelection')
+                    ]
                     
-                    def selectedStage = userInput['Test']
+                    def selectedStage = userInput['stageSelection']
                     
                     if (selectedStage == 'Build') {
                         buildStage()
